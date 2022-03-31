@@ -131,7 +131,7 @@ def post(request):
             negotiable = request.POST['negotiable']
             owner_email = request.POST['owner_email']
             owner_phone_number = request.POST['owner_phone_number']
-            house_status = 'YES'
+            house_status = 'FOR RENT'
 
             cursor.execute("INSERT INTO house_info VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
             [house_title, area_info, room_size, house_location, postal_code, number_of_bedrooms, 
