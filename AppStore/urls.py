@@ -11,4 +11,5 @@ urlpatterns = [
     path('login', app.views.login, name='login'),
     path('admin/', admin.site.urls),
     path('view/<str:title>', app.views.view, name='view')
+    path('post', app.views.post, name='post')
 ]

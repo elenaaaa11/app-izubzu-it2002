@@ -108,3 +108,38 @@ def login(request):
             context["status"] = status
     
     return render(request, "app/login.html", context)
+
+
+def post(request):
+    context={}
+    status=''
+
+    ## Add the house
+    if request.POST:
+        with connection.cursor() as cursor:
+            house_title = request.POST['house_title']
+            area_info = request.POST['area_info']
+            room_size = request.POST['room_size']
+            house_location = request.POST['house_location']
+            postal_code = request.POST['postal_code']
+            number_of_bedrooms = request.POST['number_of_bedrooms']
+            number_of_washrooms = request.POST['number_of_washrooms']
+            max_tenant = request.POST['max_tenant']
+            available_date = request.POST['available_date']
+            expected_price = request.POST['expected_price']
+            price_per_feet = request.POST['price_per_feet']
+            negotiable = request.POST['negotiable']
+            owner_email = request.POST['owner_email']
+            owner_phone_number = request.POST['owner_phone_number']
+            house_status = 'YES'
+
+            cursor.execute("INSERT INTO house_info VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+            [house_title, area_info, room_size, house_location, postal_code, number_of_bedrooms, 
+            number_of_washrooms, max_tenant, available_date, expected_price, 
+            price_per_feet, negotiable, owner_email, owner_phone_number, house_status])
+
+            status='Congratulation! You have post a house successfully!'
+
+    context["status"] = status
+    
+    return render(request, "app/post.html", context)
