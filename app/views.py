@@ -168,6 +168,6 @@ def rent_1(request, title, owner_email):
             status='Emmm... Seems you are not login yet!'
             context["status"] = status
 
-    return render(request,'app/rent_1.html',result_dict,context)
+    return render(request, 'app/rent_1.html', result_dict, context)
 
 
