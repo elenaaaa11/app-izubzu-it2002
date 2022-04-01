@@ -11,5 +11,5 @@ urlpatterns = [
     path('login', app.views.login, name='login'),
     path('admin/', admin.site.urls),
     path('view/<str:title>', app.views.view, name='view'),
-    path('rent_1', app.views.rent_1, name='rent')
+    path('rent_1', app.views.rent_1, name='rent_1')
 ]
