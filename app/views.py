@@ -158,7 +158,7 @@ def rent_1(request):
                     end_date = request.POST['rent_date']
 
 
-                    cursor.execute("INSERT INTO  VALUES (%s,%s,%s,%s,%s)",
+                    #cursor.execute("INSERT INTO  VALUES (%s,%s,%s,%s,%s)",
                     #[borrower_email, onwer_email, house_title, rent_price, end_date])
 
                     status='Congratulation! You have already rent the house.'
