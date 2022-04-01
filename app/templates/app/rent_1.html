@@ -1,12 +1,11 @@
 {% load static %}
 <html>
 <body>
-    <h2>Rent Now!</h2></br>
-    <img src="{% static 'app/images/logo.png' %}" width="10%" alt="Izubzu Logo"/><br/><br/>
-
-    <p style="color:aqua">{{ status|safe }}</p>
-
-    <a href='/'>Cancel Rent or Go Back</a>
+    <h2>Rent {{house.0}} Now!</h2>
+    <a href="/">Cancel Rent or Go Back</a>
+    <br/>
+    <img src="{% static 'app/images/logo.png' %}" width="10%" alt="Izubzu Logo"/>
+    <br/>
 
     <table style='text-align:left'>
         <tr>
