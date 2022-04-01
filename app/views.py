@@ -169,3 +169,5 @@ def rent_1(request, title, owner_email):
             context["status"] = status
 
     return render(request,'app/rent_1.html',result_dict,context)
+
+
