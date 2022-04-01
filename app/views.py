@@ -134,13 +134,13 @@ def post(request):
     return render(request, "app/post.html", context)
 
 
-def rent_1(request):
+def rent_1(request, title, owner_email):
 
     context={}
     status=''
 
     with connection.cursor() as cursor:
-        #cursor.execute("SELECT * FROM house_info WHERE house_status = 'FOR RENT' AND house_title = %s", [title])
+        cursor.execute("SELECT * FROM house_info WHERE house_status = 'FOR RENT' AND house_title = %s", [title])
         house = cursor.fetchone()
 
         result_dict = {'house': house}
@@ -152,19 +152,17 @@ def rent_1(request):
                 with connection.cursor() as cursor:
                     cursor.execute("UPDATE house_info SET house_status = 'RENTED' WHERE house_title = %s",[request.POST['title']])
                     borrower_email = request.user.email
-                    #onwer_email = owner_email
-                    #house_title = title
+                    onwer_email = owner_email
+                    house_title = title
                     rent_price = request.POST['price']
                     end_date = request.POST['rent_date']
 
 
-                    #cursor.execute("INSERT INTO  VALUES (%s,%s,%s,%s,%s)",
-                    #[borrower_email, onwer_email, house_title, rent_price, end_date])
+                    cursor.execute("INSERT INTO  VALUES (%s,%s,%s,%s,%s)",
+                    [borrower_email, onwer_email, house_title, rent_price, end_date])
 
                     status='Congratulation! You have already rent the house.'
                     context["status"] = status
-
-
                 # Update the record in rent_history
         else :
             status='Emmm... Seems you are not login yet!'

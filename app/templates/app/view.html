@@ -78,8 +78,10 @@
             <td>{{ house.13 }}</td>
         </tr>
     </table></br>
-    <a href="rent_1"><button>Rent</button></a>
-    {% csrf_token %} 
+    <form method="POST" style="display: inline;">
+        <input type="hidden" name="title" value="{{house.0}}"/>
+        <a href="rent_1/{{house.0}},{{house.12}}"><button>Rent</button></a> 
+        {% csrf_token %}    
     </form>
 </body>
 </html>
