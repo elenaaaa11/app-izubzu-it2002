@@ -76,13 +76,6 @@ def view(request, title):
 
         result_dict = {'house': house}
 
-        ## Rent the house
-    if request.POST:
-        if request.POST['action'] == 'rent':
-            with connection.cursor() as cursor:
-                cursor.execute("UPDATE house_info SET house_status = 'RENTED' WHERE house_title = %s",[request.POST['title']])
-                # Update the record in rent_history
-
     return render(request,'app/view.html',result_dict)
 
 def user_login(request):
@@ -141,7 +134,7 @@ def post(request):
     return render(request, "app/post.html", context)
 
 
-def rent_1(request, title, owner_email):
+def rent_1(request, title_1, owner_email):
 
     context={}
     status=''
