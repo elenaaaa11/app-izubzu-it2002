@@ -77,7 +77,7 @@ def view(request, title):
 
     return render(request,'app/view.html',result_dict)
 
-def login(request):
+def user_login(request):
     context={}
     status = ''
 
