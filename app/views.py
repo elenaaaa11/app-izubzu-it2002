@@ -135,9 +135,6 @@ def post(request):
 
 def rent_1(request, title):
 
-    context={}
-    status=''
-
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM house_info WHERE house_status = 'FOR RENT' AND house_title = %s", [title])
         house = cursor.fetchone()
@@ -155,11 +152,11 @@ def rent_1(request, title):
                 rent_price = request.POST['price']
                 start_date = request.POST['start_date']
                 end_date = request.POST['end_date']
-                status = 'SUCCESS'
+                status_ = 'SUCCESS'
 
 
                 cursor.execute("INSERT INTO rent_history VALUES (%s,%s,%s,%s,%s,%s,%s)",
-                [borrower_email, owner_email, house_title, rent_price, start_date, end_date, status])
+                [borrower_email, owner_email, house_title, rent_price, start_date, end_date, status_])
 
                 status='Congratulation! You have already rent the house.'
                 result_dict["status"] = status
@@ -170,4 +167,22 @@ def rent_1(request, title):
 
     return render(request, 'app/rent_1.html', result_dict)
 
+def user_logout(request):
+    status = ''
 
+    with connection.cursor() as cursor:
+
+        result_dict = {'user': [request.user.username, request.user.email, request.user.password]}
+
+    
+    if request.user.is_authenticated:
+
+        status='You have log out successfully!'
+        logout(request, user)
+        result_dict["status"] = status
+        
+    else:
+        status='Emmm... Seems You have not log in! Please check again!'
+        result_dict["status"] = status
+    
+    return render(request, "app/logout.html", result_dict)
