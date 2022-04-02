@@ -133,7 +133,7 @@ def post(request):
     return render(request, "app/post.html", context)
 
 
-def rent_1(request, title, owner_email):
+def rent_1(request):
 
     context={}
     status=''
@@ -151,8 +151,8 @@ def rent_1(request, title, owner_email):
                 with connection.cursor() as cursor:
                     cursor.execute("UPDATE house_info SET house_status = 'RENTED' WHERE house_title = %s",[request.POST['title']])
                     borrower_email = request.user.email
-                    onwer_email = owner_email
-                    house_title = title
+                    onwer_email = request.owner_email
+                    house_title = request.title
                     rent_price = request.POST['price']
                     end_date = request.POST['rent_date']
 
