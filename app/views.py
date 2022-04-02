@@ -153,11 +153,13 @@ def rent_1(request, title):
                 owner_email = request.POST['owner_email']
                 house_title = request.POST['title']
                 rent_price = request.POST['price']
-                end_date = request.POST['rent_date']
+                start_date = request.POST['start_date']
+                end_date = request.POST['end_date']
+                status = 'SUCCESS'
 
 
-                cursor.execute("INSERT INTO rent_history VALUES (%s,%s,%s,%s,%s)",
-                [borrower_email, owner_email, house_title, rent_price, end_date])
+                cursor.execute("INSERT INTO rent_history VALUES (%s,%s,%s,%s,%s,%s,%s)",
+                [borrower_email, owner_email, house_title, rent_price, start_date, end_date, status])
 
                 status='Congratulation! You have already rent the house.'
                 context["status"] = status
