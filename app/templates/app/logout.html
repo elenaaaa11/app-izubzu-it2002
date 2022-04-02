@@ -25,6 +25,7 @@
     </table></br>  
 
     <form method="POST" style="display: inline;">
+        {% csrf_token %}
         <button type="submit" value="logout">Logout!</button>
     </form>
 </body>
