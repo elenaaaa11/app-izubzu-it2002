@@ -146,7 +146,7 @@ def rent_1(request, title):
         
     ## Rent the house
     if request.POST:
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             if request.POST['action'] == 'rent':
                 with connection.cursor() as cursor:
                     cursor.execute("UPDATE house_info SET house_status = 'RENTED' WHERE house_title = %s",[request.POST['title']])
