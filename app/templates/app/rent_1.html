@@ -39,9 +39,8 @@
         <button type="submit" value="rent">Rent!</button>
         </form> 
     <form method="POST" style="display: inline;">
+        {% csrf_token %}
         <input type="hidden" name="title" value="{{house.0}}"/>
-    </form> 
-    <form method="POST" style="display: inline;">
         <input type="hidden" name="owner_email" value="{{house.12}}"/>
     </form> 
 </body>

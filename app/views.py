@@ -73,7 +73,6 @@ def view(request, title):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM house_info WHERE house_status = 'FOR RENT' AND house_title = %s", [title])
         house = cursor.fetchone()
-
         result_dict = {'house': house}
 
     return render(request,'app/view.html',result_dict)
