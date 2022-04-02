@@ -170,19 +170,16 @@ def rent_1(request, title):
 
 def user_logout(request):
     status = ''
-
-    with connection.cursor() as cursor:
-
-        result_dict = {'user': [request.user.username, request.user.email, request.user.password]}
-
-    
     if request.user.is_authenticated:
+        with connection.cursor() as cursor:
+            result_dict = {'user': [request.user.username, request.user.email, request.user.password]}
 
         status='You have log out successfully!'
         logout(request)
         result_dict["status"] = status
         
     else:
+        result_dict = {'user': ['NA','NA','NA']}
         status='Emmm... Seems You have not log in! Please check again!'
         result_dict["status"] = status
     
