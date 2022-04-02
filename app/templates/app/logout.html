@@ -7,7 +7,7 @@
     <h4>Please check the information!</h4>
     <p style="color:aqua">{{ status|safe }}</p>
 
-    <a href='/'>Cancel log out or Go Back</a>
+    <a href='/'>Go Back</a>
 
     <table style='text-align:left'>
         <tr>
@@ -23,10 +23,5 @@
 
         
     </table></br>  
-
-    <form method="POST" style="display: inline;">
-        {% csrf_token %}
-        <button type="submit" value="logout">Logout!</button>
-    </form>
 </body>
 </html>
