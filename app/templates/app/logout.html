@@ -1,0 +1,31 @@
+{% load static %}
+<html>
+<body>
+    <h2>Log In</h2></br>
+    <img src="{% static 'app/images/logo.png' %}" width="10%" alt="Izubzu Logo"/><br/><br/>
+
+    <h4>Please check the information!</h4>
+    <p style="color:aqua">{{ status|safe }}</p>
+
+    <a href='/'>Cancel log in or Go Back</a>
+
+    <table style='text-align:left'>
+        <tr>
+            <th>Name</th>
+            <td>:</td>
+            <td>{{ user.0 }}</td>
+        </tr>
+        <tr>
+            <th>E-mail</th>
+            <td>:</td>
+            <td>{{ user.1 }}</td>
+        </tr>
+
+        
+    </table></br>  
+
+    <form method="POST" style="display: inline;">
+        <button type="submit" value="logout">Logout!</button>
+    </form>
+</body>
+</html>
