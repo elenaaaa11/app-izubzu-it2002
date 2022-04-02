@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.db import connection
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.contrib.auth import logout
 
 def index(request):
     """Shows the main page"""
@@ -178,7 +179,7 @@ def user_logout(request):
     if request.user.is_authenticated:
 
         status='You have log out successfully!'
-        logout(request, user)
+        logout(request)
         result_dict["status"] = status
         
     else:
