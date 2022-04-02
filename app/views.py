@@ -162,11 +162,11 @@ def rent_1(request, title):
                 [borrower_email, owner_email, house_title, rent_price, start_date, end_date, status])
 
                 status='Congratulation! You have already rent the house.'
-                context["status"] = status
+                result_dict["status"] = status
             # Update the record in rent_history
         else :
             status='Emmm... Seems you are not login yet!'
-            context["status"] = status
+            result_dict["status"] = status
 
     return render(request, 'app/rent_1.html', result_dict)
 
