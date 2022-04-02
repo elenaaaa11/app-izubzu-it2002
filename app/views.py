@@ -8,10 +8,10 @@ def index(request):
 
     ## Show recommendation list
     with connection.cursor() as cursor:
-        cursor.execute("SELECT COUNT(*) FROM house_info WHERE  house_status='FOR RENT' LIMIT(1)")
+        cursor.execute("SELECT COUNT(*) FROM house_info WHERE house_status='FOR RENT' LIMIT(1)")
         total = cursor.fetchone()
 
-        cursor.execute("SELECT * FROM house_info ORDER BY expected_price LIMIT(5)")
+        cursor.execute("SELECT * FROM house_info WHERE house_status = 'FOR RENT' ORDER BY expected_price LIMIT(5)")
         houses = cursor.fetchall()
 
         # Try advanced queries
@@ -148,7 +148,7 @@ def rent_1(request, title):
     if request.POST:
         if request.user.is_authenticated:
             with connection.cursor() as cursor:
-                #cursor.execute("UPDATE house_info SET house_status = 'RENTED' WHERE house_title = %s",[request.POST['title']])
+                cursor.execute("UPDATE house_info SET house_status = 'RENTED' WHERE house_title = %s",[request.POST['title']])
                 borrower_email = request.user.email
                 owner_email = request.POST['owner_email']
                 house_title = request.POST['title']
