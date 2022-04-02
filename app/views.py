@@ -133,7 +133,7 @@ def post(request):
     return render(request, "app/post.html", context)
 
 
-def rent_1(request):
+def rent_1(request, title):
 
     context={}
     status=''
