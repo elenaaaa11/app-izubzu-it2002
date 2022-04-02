@@ -134,7 +134,7 @@ def post(request):
     return render(request, "app/post.html", context)
 
 
-def rent_1(request, house):
+def rent_1(request, title, owner_email):
 
     context={}
     status=''
