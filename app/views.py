@@ -32,7 +32,7 @@ def rent(request):
 
             
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM house_info ORDER BY expected_price")
+        cursor.execute("SELECT * FROM house_info WHERE house_status = 'FOR RENT' ORDER BY expected_price")
         houses = cursor.fetchall()
     result_dict = {'records': houses}
     
@@ -147,22 +147,21 @@ def rent_1(request, title):
     ## Rent the house
     if request.POST:
         if request.user.is_authenticated:
-            if request.POST['action'] == 'rent':
-                with connection.cursor() as cursor:
-                    cursor.execute("UPDATE house_info SET house_status = 'RENTED' WHERE house_title = %s",[request.POST['title']])
-                    borrower_email = request.user.email
-                    onwer_email = request.owner_email
-                    house_title = request.title
-                    rent_price = request.POST['price']
-                    end_date = request.POST['rent_date']
+            with connection.cursor() as cursor:
+                cursor.execute("UPDATE house_info SET house_status = 'RENTED' WHERE house_title = %s",[request.POST['title']])
+                borrower_email = request.user.email
+                owner_email = request.POST['ownerer_email']
+                house_title = request.POST['title']
+                rent_price = request.POST['price']
+                end_date = request.POST['rent_date']
 
 
-                    cursor.execute("INSERT INTO  VALUES (%s,%s,%s,%s,%s)",
-                    [borrower_email, onwer_email, house_title, rent_price, end_date])
+                cursor.execute("INSERT INTO  VALUES (%s,%s,%s,%s,%s)",
+                [borrower_email, owner_email, house_title, rent_price, end_date])
 
-                    status='Congratulation! You have already rent the house.'
-                    context["status"] = status
-                # Update the record in rent_history
+                status='Congratulation! You have already rent the house.'
+                context["status"] = status
+            # Update the record in rent_history
         else :
             status='Emmm... Seems you are not login yet!'
             context["status"] = status
