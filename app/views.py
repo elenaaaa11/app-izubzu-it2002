@@ -184,3 +184,15 @@ def user_logout(request):
         result_dict["status"] = status
     
     return render(request, "app/logout.html", result_dict)
+
+
+
+def area(request,area_name):
+
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM house_info WHERE house_status = 'FOR RENT' AND area = %s ORDER BY expected_price ",[area_name])
+        houses = cursor.fetchall()
+    
+    result_dict = {'records': houses}
+    
+    return render(request,'app/area.html',result_dict)
